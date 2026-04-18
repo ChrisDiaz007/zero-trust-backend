@@ -49,6 +49,6 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 end
 
-gem 'devise'
-gem 'devise-jwt'
-gem 'jsonapi-serializer'
+gem "devise", "~> 5.0"
+gem "devise-jwt", "~> 0.13.0"
+gem "jsonapi-serializer", "~> 2.2"
