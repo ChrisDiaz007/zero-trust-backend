@@ -284,7 +284,6 @@ Devise.setup do |config|
   #   warden_config.intercept_401 = false
   #   warden_config.default_strategies(scope: :user).unshift :some_external_strategy
   # end
-
   # ==> Mountable engine configurations
   # When using Devise inside an engine, let's call it `MyEngine`, and this engine
   # is mountable, there are some extra configurations to be taken into account.
@@ -317,11 +316,15 @@ Devise.setup do |config|
   config.jwt do |jwt|
     jwt.secret = Rails.application.credentials.fetch(:devise_jwt_secret_key)
     jwt.dispatch_requests = [
-      [ "POST", %r{^/api/v1/auth/login$} ]
+      [ "POST", %r{^/api/v1/login$} ]
     ]
     jwt.revocation_requests = [
-      [ "DELETE", %r{^/api/v1/auth/logout$} ]
+      [ "DELETE", %r{^/api/v1/logout$} ]
     ]
     jwt.expiration_time = 15.minutes.to_i
+  end
+
+  config.warden do |warden|
+    warden.scope_defaults :user, { store: false }
   end
 end
