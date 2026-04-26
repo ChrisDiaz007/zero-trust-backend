@@ -1,4 +1,4 @@
-class Api::V1::TokensController < ApplicationController
+class Api::V1::TokensController < Api::V1::BaseController
   include ActionController::Cookies
 
   skip_before_action :authenticate_user!, only: [ :refresh_token ]
